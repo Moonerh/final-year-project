@@ -1,0 +1,267 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.inactive-main {
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+}
+.docInactive{
+    pointer-events: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    width: 70%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    /* padding: 20px; */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.closeBtn{
+    width: 30%;
+    height: 1.5rem;
+    margin-left: 35%;
+    margin-bottom: 2rem;
+    margin-top: .5rem;
+    border-radius: 10px;
+    outline: none;
+}
+
+.uploadVideos form{
+    display: flex;
+    flex-direction: column;
+}
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+}
+.nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+    /* background-color: #000; */
+}
+
+.uploadVideos{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uploadVideos form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.uploadVideos form input{
+    margin-top: 2rem;
+    width: 70%;
+    padding-left: .5rem;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 8px;
+}
+
+.frameList {
+    border-radius: .8rem;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+.frameList p {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    margin-top: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.frameList button{
+    width: 10rem;
+    height: 3rem;
+    /* padding: 2rem; */
+}
+
+/* 
+<?php
+
+include 'database.php';
+
+session_start();
+
+$getDocuments = "";
+$docTitle = "";
+
+$sql = "SELECT * FROM document";
+$docs = mysqli_query($conn, $sql);
+if (mysqli_num_rows($docs) > 0) {
+    while ($row = mysqli_fetch_assoc($docs)) {
+        $dId = $row['id'];
+        $path = $row['path'];
+        $docTitle = $row['title'];
+
+        $getDocuments .= '
+            <div class="frameList">
+                <p>'.$docTitle.'</p>
+                <button type="button" data-doc='.$path.' onclick="openDoc(this)">View File</button>
+            </div>
+        ';
+    }
+}
+
+
+if (isset($_POST['uploadBtn'])) {
+    if ($_FILES['documentName']['error'] === UPLOAD_ERR_OK) {
+        $uploadFile = $_FILES['documentName']['tmp_name'];
+        $destination = "documents/".$_FILES['documentName']['name'];
+
+        // Check if the file is not already in the database
+        $existingSql = "SELECT COUNT(*) FROM document WHERE path = ?";
+        $existingStmt = mysqli_prepare($conn, $existingSql);
+        mysqli_stmt_bind_param($existingStmt, "s", $destination);
+        mysqli_stmt_execute($existingStmt);
+        $existingResult = mysqli_stmt_get_result($existingStmt);
+
+        if ($existingResult) {
+            $isExisting = mysqli_fetch_row($existingResult)[0];
+
+            if ($isExisting > 0) {
+                // File already exists in the database
+                // echo "File already exists in the database";
+            } else {
+                // File doesn't exist in the database, proceed with the upload
+                        // copying file to the video folder
+                if (move_uploaded_file($uploadFile, $destination)) {
+                    // echo "file uploaded successfully";
+                    $path = $destination;
+                    $docTitle = $_POST['docTitle'];
+
+                    $sql = "INSERT INTO `document`(`title`, `path`) VALUES(?, ?)";
+                    $insertStmt = mysqli_prepare($conn, $sql);
+                    mysqli_stmt_bind_param($insertStmt, "ss", $docTitle, $path);
+                        
+                    // sending file path and description to the db
+                    if (mysqli_stmt_execute($insertStmt)) {
+                        // echo "new file inserted successfully";
+                    }
+                    else{
+                        echo "error!!! ".$insertSql;
+                    }
+                }
+            }
+        }
+        else {
+            echo "errorrrrr".$existingSql;
+        }
+    }
+    else {
+        echo "error!".$_FILES['documentName']['error'];
+    }
+
+}
+
+
+?>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    <!-- <link rel="stylesheet" href="css/admin.css"> -->
+    <link rel="stylesheet" href="css/document.css">
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li><a href="admin.php">home</a></li>
+        <li><a href="customerList.php">customers</a></li>
+        <li><a href="videos.php">videos</a></li>
+        <li><a href="#"  onclick="openDocumentModal()">upload document</a></li>
+    </ul>
+</div>
+
+<div class="modal" id="uploadDocumentModal">
+    <p id="uploadDocumentModal"></p>
+    <div class="uploadVideos">
+        <form action="" method="post" enctype="multipart/form-data">
+            <p>upload document</p>
+            <input type="text" name="docTitle" id="" placeholder="document description" required>
+            <input type="file" name="documentName" id="" accept=".pdf, .docx">
+            <input type="submit" value="uploadDocument" name="uploadBtn">
+        </form>
+    </div>
+    <button class="closeBtn" onclick="closeDocumentModal()">Close</button>
+</div>
+
+<div class="documents">
+    <?php echo $getDocuments; ?>
+</div>
+
+
+<script>
+
+    function openDocumentModal(content) {
+    var modal = document.getElementById("uploadDocumentModal");
+    modal.style.display = "block";
+    }
+
+    function closeDocumentModal() {
+    var modal = document.getElementById("uploadDocumentModal");
+    modal.style.display = "none";
+    }
+    
+    function openDoc(e) {
+    let path = e.dataset.doc;
+
+    // Get the parent element of the clicked button
+    const frameList = e.closest('.frameList');
+
+    // Remove the existing iframe if present
+    const existingIframe = frameList.querySelector('iframe');
+    if (existingIframe) {
+        frameList.removeChild(existingIframe);
+    }
+
+    // Create and append the new iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = path;
+    iframe.className = 'iframe';
+    frameList.appendChild(iframe);
+}
+
+
+</script>
+
+</body>
+</head> */

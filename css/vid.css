@@ -1,0 +1,169 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Style for the main page when modal is active */
+.inactive-main {
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+}
+.vInactive{
+    pointer-events: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    width: 60%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.closeBtn{
+    width: 30%;
+    height: 1.5rem;
+    margin-left: 35%;
+    margin-bottom: 2rem;
+    margin-top: .5rem;
+    border-radius: 10px;
+    outline: none;
+}
+
+.uploadVideos form{
+    display: flex;
+    flex-direction: column;
+}
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+}
+.nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+    /* background-color: #000; */
+}
+
+/* upload video section */
+.uploadVideos{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uploadVideos form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* border: 1px solid grey; */
+    /* border-radius: 10px; */
+}
+.uploadVideos form input{
+    margin-top: 2rem;
+    width: 70%;
+    padding-left: .5rem;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 8px;
+}
+
+/* Style for the video container */
+.videos {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+/* Style for each individual video */
+.video {
+    max-width: 500px;
+    /* width: 100%; */
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    /* border: 1px solid red; */
+
+}
+
+/* Style for the video itself */
+.video video {
+    width: 100%; /* Make the video element fill its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Style for the video description */
+.video p {
+    height: auto;
+    margin: 3px 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #000000;
+    color: #fff;
+}
+
+/* Style for the comment section */
+.commentSection {
+    margin-top: 10px;
+    height: auto;
+}
+
+/* Style for the comments */
+.comments {
+    max-height: 100px;
+    overflow-y: auto;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Style for each individual comment */
+.comment {
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+form textarea{
+    padding-left: 7px;
+    padding-top: 5px;
+}
+
+/* Style for the comment input and submit button */
+form textarea, form button {
+    margin-top: 5px;
+    width: 100%;
+}
+
+form button:hover{
+    cursor: pointer;
+}
+
+/* Optional hover effect for videos */
+.video:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+
+}
+body{
+    background-image: url("../munah.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+.form{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* border: 1px solid rgb(81, 81, 81); */
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.5);
+
+}
+.form form input{
+    margin-top: 2rem;
+    width: 70%;
+    padding-left: .5rem;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 8px;
+    height: 2rem;
+}
+.form button{
+    margin-top: 2rem;
+    width: 30%;
+    height: 1.5rem;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+}
+.link{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+    flex-direction: row;
+    margin-top: .8rem;
+    width: 58%;
+}
+.link .signup{
+    margin-left: auto;
+
+}
+button:hover{
+    color: rgb(68, 148, 233);
+    pointer-events: cusor;
+}
+a{
+    color: rgb(36, 126, 237);
+    width: 20px;
+    
+
+}
+p{
+    color: aliceblue;
+}
+h2{
+    color: aliceblue;
+}

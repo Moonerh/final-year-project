@@ -1,0 +1,57 @@
+.form{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-image: url("../creative-set-make-up-colors-dark-generative-ai_188544-9796.jpg");
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+.form form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* border: 1px solid rgb(252, 217, 252);/ */
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.5);
+}
+.form form input{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    margin-top: 2rem;
+    width: 70%;
+    height: 2rem;
+    padding-left: .5rem;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 8px;
+}
+.form button{
+    margin-top: 2rem;
+    width: 30%;
+    height: 1.5rem;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+}
+.form button:hover{
+    color: rgb(172, 157, 18);
+    pointer-events: cusor;
+}
+h2{
+    color: white;
+    font-style: inherit;
+    font-family: 'Times New Roman', Times, serif
+}
